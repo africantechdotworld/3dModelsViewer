@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    model-viewer {
+      width: 80vw;
+      height: 80vh;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    
+    .button-container {
+      display: flex;
+      gap: 10px; /* Adjust the gap as needed */
+    }
+  </style>
+  <!-- Import the component -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+  <!-- Use it like any other HTML element -->
+  <model-viewer id="modelViewer" alt="Model" src="" environment-image="" poster="" tone-mapping="commerce" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+
+  <div class="button-container">
+    <button id="toggleButton">Play/Pause</button>
+  </div>
+
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', function () {
+      const modelViewer = document.getElementById('modelViewer');
+      const toggleButton = document.getElementById('toggleButton');
+      const arButton = document.getElementById('arButton');
+      let isPlaying = false;
+
+      // Placeholder URLs
+      const modelSrc = 'https://cdn.jsdelivr.net/gh/Goliath3/panorama@main/shaylushay.glb';
+      const environmentImage = 'https://raw.githubusercontent.com/google/model-viewer/master/packages/shared-assets/environments/moon_1k.hdr';
+      const poster = 'YOUR_POSTER_URL_HERE';
+      const musicSrc = 'https://raw.githubusercontent.com/africantechdotworld/3dModelsViewer/main/cool_music_3.mp3';
+
+      // Set placeholder URLs
+      modelViewer.src = modelSrc;
+      modelViewer.environmentImage = environmentImage;
+      modelViewer.poster = poster;
+
+      const audio = new Audio(musicSrc);
+      
+      modelViewer.addEventListener('click', function () {
+      window.location.href = 'https://google.com';
+      });
+
+      toggleButton.addEventListener('click', function () {
+        if (isPlaying) {
+          modelViewer.pause();
+          audio.pause();
+        } else {
+          modelViewer.play();
+          audio.play();
+        }
+
+        isPlaying = !isPlaying;
+      });
+    });
+  </script>
+</body>
+</html>
